@@ -7,6 +7,8 @@ import io.pivotal.pal.tracker.TimeEntryRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.metrics.CounterService;
+import org.springframework.boot.actuate.metrics.GaugeService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,11 +22,15 @@ public class InMemoryTimeEntryRepositoryTest {
 
     TimeEntryRepository repo;
     private TimeEntryController controller;
+    private CounterService counterService;
+    private GaugeService gaugeService;
 
     @Before
     public void setUp() throws Exception {
         repo = new InMemoryTimeEntryRepository();
-        controller = new TimeEntryController(repo);
+        counterService = mock(CounterService.class);
+        gaugeService = mock(GaugeService.class);
+        controller = new TimeEntryController(repo,counterService,gaugeService);
     }
 
 
