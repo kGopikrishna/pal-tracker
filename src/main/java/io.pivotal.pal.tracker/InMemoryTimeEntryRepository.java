@@ -35,7 +35,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 
 
     @Override
-    public TimeEntry find(long id) {
+    public TimeEntry find(Long id) {
 
         return timeEntries.get(id);
     }
@@ -47,7 +47,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 
 
     @Override
-    public TimeEntry update(long id, TimeEntry timeEntry) {
+    public TimeEntry update(Long id, TimeEntry timeEntry) {
         io.pivotal.pal.tracker.TimeEntry updatedEntry = new TimeEntry(
                 id,
                 timeEntry.getProjectId(),
@@ -61,7 +61,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
     }
 
     @Override
-    public void delete(long id){
+    public void delete(Long id){
         timeEntries.remove(id);
     }
 }
